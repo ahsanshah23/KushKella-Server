@@ -94,6 +94,23 @@ app.use('/formcount', (req, res) => {
 
 });
 
+app.use('/formcount', (req, res) => {
+
+  var FormID = req.query.FormID;
+  var PhoneID = req.query.PhoneID;
+  var ID1040 = req.query.ID1040;
+
+  db.execute("Select count(*) as count from user_forms where PhoneID='" + PhoneID + "' && FormID='" + FormID + "' && 1040ID='" + ID1040 + "' ")
+    .then(results => {
+      res.send(results[0])
+    })
+    .catch(err => {
+      // res.send("0")
+      console.log(err)
+    });
+
+});
+
 app.use('/add1044', (req, res) => {
 
   // var FormID = req.query.FormID;
